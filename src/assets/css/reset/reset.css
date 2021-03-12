@@ -1,0 +1,451 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    font-weight: normal
+}
+
+ul {
+    list-style: none
+}
+
+input,
+button {
+    outline: none;
+    border: none;
+    background: none
+}
+
+button {
+    cursor: pointer
+}
+
+a {
+    text-decoration: none;
+    color: #333
+}
+
+table {
+    border-collapse: collapse
+}
+
+html {
+    width: 100%;
+    height: 100%
+}
+
+html body {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    line-height: 1;
+    font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    ;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: url(../img/fc-bg.png) no-repeat;
+    background-size: cover
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.clearfix::after {
+    display: table;
+    content: '';
+    height: 0;
+    visibility: hidden;
+    clear: both
+}
+
+.scroll-style {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+.scroll-style::-webkit-scrollbar {
+    width: 10px;
+    height: 1px
+}
+
+.scroll-style::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.scroll-style::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.text-over-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.disabled-event {
+    pointer-events: none;
+}
+
+
+/*  */
+
+.logo {
+    padding-top: 40px;
+    text-align: center;
+    user-select: none;
+  }
+
+
+.gov-wrap {
+    width: 1582px;
+    height: 668px;
+    margin: 0 auto;
+    margin-top: 22px;
+    background: url(../img/icon-7.png) no-repeat;
+    background-size: cover;
+}
+
+.gov-wrap .top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gov-wrap .addr-bar {
+    width: 757px;
+    margin-left: 18px;
+    padding: 30px 0 11px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gov-wrap .addr-bar>img {
+    margin-right: 6px;
+}
+
+.gov-wrap .tab-nav {
+    display: flex;
+    align-items: center;
+    width: 770px;
+    height: 48px;
+    padding-left: 50px;
+    margin: 15px 15px 0 0;
+    background: url(../img/icon-4.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.gov-wrap .tab-nav .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 238px;
+    font-size: 23px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.gov-wrap .tab-nav .nav-item>* {
+    transform: translate3d(0);
+    transition: all .3s linear;
+}
+
+.gov-wrap .tab-nav .nav-item>img {
+    height: 28px;
+    margin-right: 8px;
+}
+
+.gov-wrap .tab-nav .nav-item.active span {
+    opacity: .7;
+}
+
+.gov-wrap .tab-nav .nav-item.active>img {
+    opacity: .5;
+    filter: drop-shadow(16px 16px 20px blue) invert(60%);
+}
+
+.gov-wrap .gov-tabs {
+    position: relative;
+}
+
+.gov-wrap .gov-tabs .tab-item {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    visibility: hidden;
+    font-size: 50px;
+}
+
+.gov-wrap .gov-tabs .tab-item.active {
+    z-index: 1;
+    visibility: visible;
+}
+
+.gov-wrap .swiper-wrap-details {
+    margin: 0 190px;
+    margin-top: 60px;
+    padding-bottom: 20px;
+}
+
+.gov-wrap .swiper-wrap-details .swiper-slide {
+    width: 412px;
+    height: 400px;
+    background: #41a5eb;
+    transition: transform .3s linear;
+    z-index: 2;
+}
+
+.gov-wrap .swiper-wrap-details .swiper-slide:not(.swiper-slide-active) {
+    transform: scale(0.84);
+    z-index: 1;
+}
+
+.gov-wrap .swiper-wrap-details .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
+    transform: scale(0.76);
+    z-index: 0;
+}
+
+.gov-wrap .swiper-wrap-details .swiper-slide>img {
+    width: 100%;
+    height: 318px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.gov-wrap .swiper-wrap-details .swiper-slide>p {
+    padding: 0 10px;
+    line-height: 1.8;
+    height: calc(100% - 318px);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 20px;
+    color: #041b40;
+}
+
+.gov-wrap .gov-file-list {
+    padding: 18px 56px;
+    height: 605px;
+}
+
+.gov-wrap .gov-file-list>li {
+    line-height: 51px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.gov-wrap .gov-file-list>li:active {
+    opacity: .8;
+}
+
+.gov-wrap .gov-file-list>li>span {
+    width: 1150px;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gov-wrap .gov-file-list>li>time {
+    float: right;
+}
+
+.gov-wrap .service-list {
+    padding: 18px 56px;
+    height: 605px;
+}
+
+.gov-wrap .service-list>li {
+    line-height: 51px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.gov-wrap .service-list>li span:active {
+    opacity: .8;
+}
+
+.gov-wrap .service-list>li>span:first-child {
+    width: 45%;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gov-wrap .service-list>li>span:last-child {
+    width: 45%;
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.detail-content {
+    margin: 40px 252px 50px;
+    color: #fff;
+}
+
+.detail-content>h2 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.3;
+}
+
+.detail-content>.time-resource {
+    margin: 22px 0 0 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+}
+
+.detail-content>article {
+    height: 400px;
+    padding: 5px 0;
+    line-height: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 18px;
+
+}
+
+article * {
+    background: none !important;
+    color: #fff !important;
+}
+
+article img {
+    max-width: 100% !important;
+}
+
+.qrcode {
+    position: absolute;
+    right: 130px;
+    top: 70px;
+    width: 110px;
+    background: #fff;
+    color: #c8c8c8;
+}
+
+.qrcode>p {
+    line-height: 1.5;
+    text-align: center;
+    font-size: 12px;
+}
+
+.qrcode>img {
+    width: 100%;
+}
+
+.util-bar {
+    position: absolute;
+    right: 0;
+    top: 378px;
+}
+
+.util-bar>.util-item {
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.util-bar>.util-item:active {
+    opacity: .6;
+}
+
+.home-container .swiper-slide>ul>li {
+    position: relative;
+}
+
+.mask-div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.mask-wrap {
+    position: fixed;
+    z-index: 999;
+    background: rgba(0, 0, 0, .5);
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 100%;
+    height: 100%;
+}
+
+.mask-wrap .gov-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    height: 920px;
+    background: url(../img/complete.png) no-repeat;
+}
+
+.isHide {
+    opacity: 0;
+}
+
+.side-bar-new-add {
+    position: absolute;
+    left: -48px;
+}
+
+.side-bar-new-add .bar-item {
+    width: 48px;
+    height: 146px;
+    margin-bottom: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background: rgba(65, 165, 235, .3);
+    font-family: SourceHanSansSC-Regular;
+    font-size: 25px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 27px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    border-radius: 8px 0 0 8px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.side-bar-new-add .bar-item:active,
+.side-bar-new-add .bar-item.active {
+    background: #0065d8;
+}
