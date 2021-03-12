@@ -57,7 +57,7 @@ html body {
     ;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: url(../img/fc-bg.png) no-repeat;
+    background: url(../../img/fc-bg.png) no-repeat;
     background-size: cover
 }
 
@@ -125,7 +125,7 @@ html body {
     height: 668px;
     margin: 0 auto;
     margin-top: 22px;
-    background: url(../img/icon-7.png) no-repeat;
+    /* background: url(../../img/icon-7.png) no-repeat; */
     background-size: cover;
 }
 
@@ -156,7 +156,7 @@ html body {
     height: 48px;
     padding-left: 50px;
     margin: 15px 15px 0 0;
-    background: url(../img/icon-4.png) no-repeat;
+    /* background: url(../../img/icon-4.png) no-repeat; */
     background-size: 100% 100%;
 }
 
@@ -413,7 +413,7 @@ article img {
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     height: 920px;
-    background: url(../img/complete.png) no-repeat;
+    /* background: url(../../img/complete.png) no-repeat; */
 }
 
 .isHide {

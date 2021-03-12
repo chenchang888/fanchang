@@ -4,6 +4,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 const routes = [
   {
+    path: "/",
+    redirect: "/home"
+  },
+  {
     path: "/home",
     name: "Home",
     // route level code-splitting

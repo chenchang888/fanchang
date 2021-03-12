@@ -1,6 +1,7 @@
 import axios from "axios"
-const instance = axios.creat({
-    baseURL: "https://qyxcx.ahegov.com",
+import { baseURL } from "./baseURL"
+const instance = axios.create({
+    baseURL,
     timeout: 20000
 })
 // 请求拦截器
