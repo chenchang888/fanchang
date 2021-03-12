@@ -1,10 +1,5 @@
 <template>
   <div class="home-container">
-    <!--<img class="mascot" src="@/assets/img/applet.jpg">-->
-    <div class="logo">
-      <img alt="" src="@/assets/img/fc-logo.png">
-
-    </div>
     <!-- 搜索开始 -->
     <div class="search-container">
       <div class="search-bar">
@@ -27,18 +22,30 @@
               <li v-for="item in policyNav.countryLeft" :key="item.id">
                 <img :src="item.icon">
                 <p>{{ item.name }}</p>
-                <div :data-name="item.name" :data-pidName='"惠企政策"' :data-themeId="item.id" class="mask-div"></div>
-              </li>
-              <li v-for="item in cityLeft" :key="item.id">
-                <img :src="item.icon">
-                <p>{{ item.name }}</p>
-                <div :data-name="item.name" :data-pidName='"惠企政策"' :data-themeId="item.id" class="mask-div"></div>
+                <div :data-name="item.name" :data-pidName='"惠企政策"' :data-themeId="item.id"></div>
               </li>
             </ul>
           </div>
         </div>
         <!-- 规范性政策库结束 -->
 
+        <!-- 政务公开专题区域 -->
+        <div class="swiper-slide">
+          <div class="swiper-slide-bg">
+            <div class="swiper-slide-title">两化专题</div>
+            <div class="twoModer-title">
+              <div class="title-top">
+                <h1>全面推进基层政务公开</h1>
+              </div>
+              <div class="title-bottom">
+                <h1>标准化</h1>
+                <h1>规范化</h1>
+                <h1>专题</h1>
+              </div>
+              <div class="click-into" @click="toPublic">点击进入</div>
+            </div>
+          </div>
+        </div>
         <!-- 企业生命周期 -->
         <div class="swiper-slide">
           <div class="swiper-slide-bg">
@@ -60,33 +67,16 @@
           </div>
         </div>
         <!-- 企业生命周期结束 -->
-        <!-- 政务公开专题区域 -->
-        <div class="swiper-slide">
-          <div class="swiper-slide-bg">
-            <div class="swiper-slide-title">两化专题</div>
-            <div class="twoModer-title">
-              <div class="title-top">
-                <h1>全面推进基层政务公开</h1>
-              </div>
-              <div class="title-bottom">
-                <h1>标准化</h1>
-                <h1>规范化</h1>
-                <h1>专题</h1>
-              </div>
-              <div class="click-into" @click="toPublic">点击进入</div>
-            </div>
-          </div>
-        </div>
 
         <!-- 个人生命周期 -->
         <div class="swiper-slide">
           <div class="swiper-slide-bg">
             <div class="swiper-slide-title">个人生命周期</div>
             <ul class="l-box" id="countryLeft">
-              <li v-for="item in policyNav.cityLeft" :key="item.id">
+              <li v-for="item in personNav" :key="item.id" @click="handlePerson">
                 <img :src="item.icon">
-                <p>{{ item.name }}</p>
-                <div :data-name="item.name" :data-pidName='"便民政策"' :data-themeId="item.id" class="mask-div"></div>
+                <p>{{ item.title }}</p>
+                <div :data-name="item.title" :data-pidName='"个人生命周期"' :data-themeId="item.id" class="mask-div"></div>
               </li>
             </ul>
           </div>
@@ -95,7 +85,6 @@
       </div>
     </div>
     <!-- 轮播图结束 -->
-    <div class="click-into" @click="toPublic">点击进入</div>
   </div>
 </template>
 
@@ -103,10 +92,13 @@
 import Swiper from 'swiper';
 import { mapState } from "vuex"
 import { baseURL } from "../api/baseURL"
+import Data from "../views/CompanyColumn/data.json"
 export default {
   name: 'home',
   data() {
     return {
+      // 个人导航项
+      personNav: [],
       policyNavList: [],
       policyId: [],
       countryLeft: [],
@@ -133,7 +125,9 @@ export default {
     const _slide = _getDom('.swiper-slide');
 
     setTimeout(() => _addClass(_slide)('animate'), 500)
-
+    // 渲染数据
+    console.log(Data);
+    this.personNav = Data.personNav
   },
   methods: {
     //设置设备code
@@ -146,7 +140,7 @@ export default {
 
     },
     initSwiper() {
-      const self = this;
+      const that = this;
       new Swiper('.swiper-wrap-index', {
         slidesPerView: 'auto',
         spaceBetween: -500,
@@ -160,7 +154,7 @@ export default {
             //alert("检测到触摸事件")
             if (e.target.className === 'mask-div') {
               //alert("触摸结束,执行跳转页面")
-              self.theme(e.target.dataset.pidname, e.target.dataset.name, e.target.dataset.themeid);
+              that.theme(e.target.dataset.pidname, e.target.dataset.name, e.target.dataset.themeid);
             }
           },
         }
@@ -172,8 +166,9 @@ export default {
       console.log(6);
       window.location.href = "http://www.wuhu.gov.cn/site/tpl/6782291"
     },
-    async getData() {
-      await this.$store.dispatch("getPolicyNav", () => {
+    // 获取政策项
+    getData() {
+        this.$store.dispatch("getPolicyNav", () => {
         console.log(this.policyNav);
         this.policyNav.countryLeft.forEach((item) => {
           item.icon = `${baseURL}/${item.icon}`
@@ -188,9 +183,12 @@ export default {
     },
     // 触摸跳转函数
     theme(pidName, themeName, themeId) {
-      this.$router.push({
-        name: 'details', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
-      })
+        console.log(pidName);
+        console.log(themeName);
+        console.log(themeId);
+    //   this.$router.push({
+    //     name: 'details', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
+    //   })
 
     },
     toSearch() {
@@ -200,19 +198,24 @@ export default {
     // 企业分类跳转
     handleCompanySet() {
       console.log(1);
-      this.$router.push({ path: 'companyColumn', query: { id: 0 } })
+      this.$router.push({ path: 'column', query: { typeId: 0, id: 0 } })
     },
     handleCompanySupport() {
       console.log(1);
-      this.$router.push({ path: 'companyColumn', query: { id: 1 } })
+      this.$router.push({ path: 'column', query: { typeId: 0, id: 1 } })
     },
     handleCompanyManage() {
       console.log(1);
-      this.$router.push({ path: 'companyColumn', query: { id: 2 } })
+      this.$router.push({ path: 'column', query: { typeId: 0, id: 2 } })
     },
     handleCompanyCancel() {
       console.log(1);
-      this.$router.push({ path: 'companyColumn', query: { id: 3 } })
+      this.$router.push({ path: 'column', query: { typeId: 0, id: 3 } })
+    },
+    // 个人分类跳转
+    handlePerson() {
+      console.log(2);
+      this.$router.push({ path: "column", query: { typeId: 1 } })
     }
 
   },
