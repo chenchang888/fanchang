@@ -2,19 +2,25 @@
   <div id="column-container">
     <div class="main">
       <div class="main-content">
-        <div class="title-type">企业开办</div>
+        <div class="title-type">{{title}}</div>
         <ul>
-          <li class="item">学籍变动</li>
-          <li class="item">教育服务</li>
-          <li class="item">"义务教育和高中阶段家庭经济困难残疾学生资助"</li>
-          <li class="item">休学审批</li>
-          <li class="item">学前教育资助服务</li>
-          <li class="item">高等教育阶段家庭经济困难残疾学生资助</li>
-          <li class="item">菜单选项菜单选项</li>
-          <li class="item">菜单选项菜单选项菜单选</li>
-          <li class="item">菜单选项菜单选项菜单选项菜单</li>
-          <li class="item">菜单选项菜单选项菜单选项菜</li>
+          <li class="item" v-for="item in navItem" :key="item.id" @click="handleGoPublic">{{item.title}}</li>
         </ul>
+      </div>
+    </div>
+    <!-- 工具栏 -->
+    <div class="util-bar">
+      <div @click="toHome" class="util-item">
+        <img alt="" src="@/assets/img/a.png">
+      </div>
+      <div @click="goBack" class="util-item">
+        <img src="@/assets/img/d.png">
+      </div>
+      <div @click="goto" class="util-item">
+        <img src="@/assets/img/c.png">
+      </div>
+      <div @click="userKey" class="util-item">
+        <img src="@/assets/img/b.png">
       </div>
     </div>
   </div>
@@ -23,15 +29,46 @@
 <script>
 import Data from "./data.json"
 export default {
-    data() {
-        return {
-            navList:[]
-        }
-    },
-    mounted(){
-        console.log(Data);
-        
+  data() {
+    return {
+      navList: [],//企业或个人列表
+      navItem: [],//菜单列表
+      title: ""//类型名称
     }
+  },
+  mounted() {
+    this.getListNav()
+  },
+  methods: {
+    getListNav() {
+      this.$route.query.typeId == 0 ? this.navList = Data.companyNav : this.navList = Data.personNav
+      const navId = this.$route.query.id
+      const index = this.navList.findIndex(item => item.id == navId)
+      if (index != -1) {
+        this.navItem = this.navList[index].children
+        this.title = this.navList[index].title
+      }
+    },
+    handleGoPublic() {
+      console.log(1);
+    },
+     //返回首页
+    toHome() {
+      console.log(6);
+      this.$router.push({ name: 'Home' })
+    },
+    //前进
+    goto() {
+      this.$router.go(1)
+    },
+    //后退
+    goBack() {
+      this.$router.go(-1)
+    },
+    userKey() {
+      // this.$router.go(-1)
+    },
+  },
 }
 </script>
 
@@ -77,12 +114,13 @@ export default {
         justify-content: center;
         align-items: center;
         width: 45%;
+        line-height: 35px;
         padding: 20px;
         margin: 20px;
         text-align: center;
         border-radius: 10px;
         box-sizing: border-box;
-        background-color: #ffa749;
+        background: rgba(255, 167, 73, 0.8);
         color: #fff;
         font-size: 26px;
       }

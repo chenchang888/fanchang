@@ -19,10 +19,10 @@
           <div class="swiper-slide-bg">
             <div class="swiper-slide-title">规范性政策库</div>
             <ul class="l-box" id="cityLeft">
-              <li v-for="item in policyNav.countryLeft" :key="item.id">
+              <li v-for="item in policyNav.countryLeft" :key="item.id" :data-name="item.name">
                 <img :src="item.icon">
                 <p>{{ item.name }}</p>
-                <div :data-name="item.name" :data-pidName='"惠企政策"' :data-themeId="item.id"></div>
+                <div :data-name="item.name" :data-pidName='"政策"' :data-themeId="item.id" class="mask-div"></div>
               </li>
             </ul>
           </div>
@@ -51,16 +51,16 @@
           <div class="swiper-slide-bg">
             <div class="swiper-slide-title">企业生命周期</div>
             <ul class="policy-company-nav">
-              <li @click="handleCompanySet">
+              <li @click="handleCompany(1)" data-themeId="1">
                 <img src="../assets/img/company_01.png">
               </li>
-              <li @click="handleCompanySupport">
+              <li @click="handleCompany(5)" data-themeId="5">
                 <img src="../assets/img/company_02.png">
               </li>
-              <li @click="handleCompanyManage">
+              <li @click="handleCompany(3)" data-themeId="3">
                 <img src="../assets/img/company_03.png">
               </li>
-              <li @click="handleCompanyCancel">
+              <li @click="handleCompany(7)" data-themeId="7">
                 <img src="../assets/img/company_04.png">
               </li>
             </ul>
@@ -73,10 +73,50 @@
           <div class="swiper-slide-bg">
             <div class="swiper-slide-title">个人生命周期</div>
             <ul class="l-box" id="countryLeft">
-              <li v-for="item in personNav" :key="item.id" @click="handlePerson">
-                <img :src="item.icon">
-                <p>{{ item.title }}</p>
-                <div :data-name="item.title" :data-pidName='"个人生命周期"' :data-themeId="item.id" class="mask-div"></div>
+              <li data-id="2">
+                <img src="">
+                <p>出生</p>
+                <!-- <div class="mask-div" data-id="2"></div> -->
+              </li>
+              <li data-id="4">
+                <img src="">
+                <p>上学</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="6">
+                <img src="">
+                <p>就业</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="8">
+                <img src="">
+                <p>社保</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="10">
+                <img src="">
+                <p>住房</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="12">
+                <img src="">
+                <p>婚姻</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="14">
+                <img src="">
+                <p>生活</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="16">
+                <img src="">
+                <p>养老</p>
+                <!-- <div class="mask-div"></div> -->
+              </li>
+              <li data-id="18">
+                <img src="">
+                <p>身后事</p>
+                <!-- <div class="mask-div"></div> -->
               </li>
             </ul>
           </div>
@@ -98,6 +138,9 @@ export default {
   data() {
     return {
       // 个人导航项
+      img: "../assets/img/company_04.png",
+      // 数字循环
+      num: [2, 4, 6, 8, 10, 12, 14, 16, 18],
       personNav: [],
       policyNavList: [],
       policyId: [],
@@ -149,12 +192,15 @@ export default {
         loop: true,
         on: {
           tap: function (e) {
-            console.log(e);
-            //console.log(e.target.className);
+            // console.log(e.path[1].dataset.id);
+            // console.log(e.target);
             //alert("检测到触摸事件")
             if (e.target.className === 'mask-div') {
               //alert("触摸结束,执行跳转页面")
               that.theme(e.target.dataset.pidname, e.target.dataset.name, e.target.dataset.themeid);
+            }
+            if(e.path[1].dataset.id){
+              that.handlePerson(e.path[1].dataset.id)
             }
           },
         }
@@ -163,17 +209,12 @@ export default {
 
     // 跳转政务公开专题
     toPublic() {
-      console.log(6);
       window.location.href = "http://www.wuhu.gov.cn/site/tpl/6782291"
     },
     // 获取政策项
     getData() {
-        this.$store.dispatch("getPolicyNav", () => {
-        console.log(this.policyNav);
+      this.$store.dispatch("getPolicyNav", () => {
         this.policyNav.countryLeft.forEach((item) => {
-          item.icon = `${baseURL}/${item.icon}`
-        })
-        this.policyNav.cityLeft.forEach((item) => {
           item.icon = `${baseURL}/${item.icon}`
         })
         setTimeout(() => {
@@ -183,12 +224,12 @@ export default {
     },
     // 触摸跳转函数
     theme(pidName, themeName, themeId) {
-        console.log(pidName);
-        console.log(themeName);
-        console.log(themeId);
-    //   this.$router.push({
-    //     name: 'details', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
-    //   })
+      console.log(pidName);
+      console.log(themeName);
+      console.log(themeId);
+      //   this.$router.push({
+      //     name: 'details', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
+      //   })
 
     },
     toSearch() {
@@ -196,26 +237,14 @@ export default {
       this.$router.push({ name: 'searchPage', query: { title: title } })
     },
     // 企业分类跳转
-    handleCompanySet() {
-      console.log(1);
-      this.$router.push({ path: 'column', query: { typeId: 0, id: 0 } })
-    },
-    handleCompanySupport() {
-      console.log(1);
-      this.$router.push({ path: 'column', query: { typeId: 0, id: 1 } })
-    },
-    handleCompanyManage() {
-      console.log(1);
-      this.$router.push({ path: 'column', query: { typeId: 0, id: 2 } })
-    },
-    handleCompanyCancel() {
-      console.log(1);
-      this.$router.push({ path: 'column', query: { typeId: 0, id: 3 } })
+    handleCompany(id) {
+      console.log(6);
+      this.$router.push({ path: 'column', query: { typeId: 0, id } })
     },
     // 个人分类跳转
-    handlePerson() {
-      console.log(2);
-      this.$router.push({ path: "column", query: { typeId: 1 } })
+    handlePerson(id) {
+      console.log(id);
+      this.$router.push({ path: "column", query: { typeId: 1, id } })
     }
 
   },
@@ -371,6 +400,8 @@ export default {
           }
         }
         .l-box > li {
+          position: relative;
+          z-index: 999;
           width: 20%;
           height: 180px;
           float: left;
