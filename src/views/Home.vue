@@ -74,47 +74,39 @@
             <div class="swiper-slide-title">个人生命周期</div>
             <ul class="l-box" id="countryLeft">
               <li data-id="2">
-                <img src="">
+                <img src="../assets/icon/chusheng.png">
                 <p>出生</p>
-                <!-- <div class="mask-div" data-id="2"></div> -->
               </li>
               <li data-id="4">
-                <img src="">
+                <img src="../assets/icon/shangxue.png">
                 <p>上学</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="6">
-                <img src="">
+                <img src="../assets/icon/jiuye.png">
                 <p>就业</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="8">
-                <img src="">
+                <img src="../assets/icon/shebao.png">
                 <p>社保</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="10">
-                <img src="">
+                <img src="../assets/icon/zhufang.png">
                 <p>住房</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="12">
-                <img src="">
+                <img src="../assets/icon/hunying.png">
                 <p>婚姻</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="14">
-                <img src="">
+                <img src="../assets/icon/shenghuo.png">
                 <p>生活</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="16">
-                <img src="">
+                <img src="../assets/icon/yanglao.png">
                 <p>养老</p>
-                <!-- <div class="mask-div"></div> -->
               </li>
               <li data-id="18">
-                <img src="">
+                <img src="../assets/icon/shenhoushi.png">
                 <p>身后事</p>
                 <!-- <div class="mask-div"></div> -->
               </li>
@@ -193,13 +185,13 @@ export default {
         on: {
           tap: function (e) {
             // console.log(e.path[1].dataset.id);
-            // console.log(e.target);
+            // console.log(e);
             //alert("检测到触摸事件")
             if (e.target.className === 'mask-div') {
               //alert("触摸结束,执行跳转页面")
               that.theme(e.target.dataset.pidname, e.target.dataset.name, e.target.dataset.themeid);
             }
-            if(e.path[1].dataset.id){
+            if (e.path[1].dataset.id) {
               that.handlePerson(e.path[1].dataset.id)
             }
           },
@@ -224,26 +216,21 @@ export default {
     },
     // 触摸跳转函数
     theme(pidName, themeName, themeId) {
-      console.log(pidName);
-      console.log(themeName);
-      console.log(themeId);
-      //   this.$router.push({
-      //     name: 'details', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
-      //   })
+      this.$router.push({
+        path: '/list', query: { pidName: pidName, classifyId: themeId, themeName: themeName }
+      })
 
     },
     toSearch() {
       var title = this.$refs.keyword.value;
-      this.$router.push({ name: 'searchPage', query: { title: title } })
+      this.$router.push({ path: '/list', query: { title: title } })
     },
     // 企业分类跳转
     handleCompany(id) {
-      console.log(6);
       this.$router.push({ path: 'column', query: { typeId: 0, id } })
     },
     // 个人分类跳转
     handlePerson(id) {
-      console.log(id);
       this.$router.push({ path: "column", query: { typeId: 1, id } })
     }
 
@@ -256,6 +243,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import "../assets/css/baseCss/baseCss.less";
 .home-container {
   // 搜索框
   .search-container {
@@ -299,21 +287,9 @@ export default {
     margin-top: 22px;
     .swiper-wrapper {
       .swiper-slide {
-        position: relative;
-        z-index: 99;
-        display: flex;
-        width: 1142px;
-        height: 668px;
-        border: 1px solid #ffffff;
+        @out-bg();
         .swiper-slide-bg {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 1120px;
-          height: 646px;
-          box-shadow: 0px 14px 43px 14px rgba(3, 3, 110, 0.47);
-          background-color: rgba(255, 255, 255, 0.2);
+          @inner-bg();
           .swiper-slide-title {
             width: 240px;
             line-height: 60px;

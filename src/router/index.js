@@ -21,7 +21,19 @@ const routes = [
     name: "Column",
     component: () =>
       import("../views/CompanyColumn/Column.vue")
-  }
+  },
+  {
+    path: "/list",
+    name: "List",
+    component: () =>
+      import("../views/List/List.vue")
+  },
+  {
+    path: "/details",
+    name: "Details",
+    component: () =>
+      import("../views/Details/Details.vue")
+  },
 ];
 
 const router = new VueRouter({

@@ -76,7 +76,7 @@ export default {
 #column-container {
   .main {
     position: relative;
-    width: 1200px;
+    width: 1500px;
     height: 700px;
     margin: 0 auto;
     border: 1px solid #ffffff;
@@ -85,7 +85,7 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1180px;
+      width: 1480px;
       height: 680px;
       box-shadow: 0px 14px 43px 14px rgba(3, 3, 110, 0.47);
       background-color: rgba(255, 255, 255, 0.2);
@@ -114,13 +114,13 @@ export default {
         justify-content: center;
         align-items: center;
         width: 45%;
-        line-height: 35px;
+        line-height: 45px;
         padding: 20px;
-        margin: 20px;
+        margin: 17px;
         text-align: center;
         border-radius: 10px;
         box-sizing: border-box;
-        background: rgba(255, 167, 73, 0.8);
+        background: rgba(105, 99, 209, 0.8);
         color: #fff;
         font-size: 26px;
       }

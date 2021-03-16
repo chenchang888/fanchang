@@ -125,7 +125,6 @@ html body {
     height: 668px;
     margin: 0 auto;
     margin-top: 22px;
-    /* background: url(../../img/icon-7.png) no-repeat; */
     background-size: cover;
 }
 
@@ -136,8 +135,9 @@ html body {
 
 .gov-wrap .addr-bar {
     width: 757px;
+    height: 48px;
     margin-left: 18px;
-    padding: 30px 0 11px 20px;
+    padding: 10px 0 11px 20px;
     display: flex;
     align-items: center;
     font-size: 18px;
@@ -155,7 +155,7 @@ html body {
     width: 770px;
     height: 48px;
     padding-left: 50px;
-    margin: 15px 15px 0 0;
+    margin: 5px 15px 0 0;
     /* background: url(../../img/icon-4.png) no-repeat; */
     background-size: 100% 100%;
 }
@@ -206,16 +206,16 @@ html body {
     visibility: visible;
 }
 
-.gov-wrap .swiper-wrap-details {
+/* .gov-wrap .swiper-wrap-details {
     margin: 0 190px;
     margin-top: 60px;
     padding-bottom: 20px;
-}
+} */
 
 .gov-wrap .swiper-wrap-details .swiper-slide {
-    width: 412px;
+    width: 700px;
     height: 400px;
-    background: #41a5eb;
+    background: #546bd9;
     transition: transform .3s linear;
     z-index: 2;
 }
@@ -421,12 +421,12 @@ article img {
 
 .side-bar-new-add {
     position: absolute;
-    left: -48px;
+    left: -58px;
 }
 
 .side-bar-new-add .bar-item {
     width: 48px;
-    height: 146px;
+    height: 145px;
     margin-bottom: 5px;
     text-align: center;
     display: flex;
@@ -446,5 +446,5 @@ article img {
 
 .side-bar-new-add .bar-item:active,
 .side-bar-new-add .bar-item.active {
-    background: #0065d8;
+    background: #5353bb;
 }

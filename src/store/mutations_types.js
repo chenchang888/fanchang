@@ -1,2 +1,5 @@
 const GETPOLICYNAV = "getpolicynav"
-export { GETPOLICYNAV }
+const GETPOLICY = "getpolicy"
+const GETGRAPHICDETAILS = "getgraphicdetails"
+const GETPOLICYDETAILS = "getpolicydetails"
+export { GETPOLICYNAV, GETPOLICY, GETGRAPHICDETAILS, GETPOLICYDETAILS }
